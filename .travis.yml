@@ -1,0 +1,17 @@
+language: bash
+sudo: required
+
+services:
+  - docker
+
+install:
+  - docker build -t docker-hexo\hexo:latest .
+  - docker run -e HEXO_ORIGIN='$origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo docker-hexo\hexo
+
+before_script:
+  - pip install mock
+  - pip install requests
+  - pip install feedparser
+
+script:
+  - docker ps | grep -q docker-hexo
