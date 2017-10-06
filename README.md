@@ -1,5 +1,7 @@
 # docker-hexo
 
+[![Build Status](https://travis-ci.org/RichardChmielek/docker-hexo.svg?branch=master)](https://travis-ci.org/RichardChmielek/docker-hexo)
+
 ## build
 
 ````docker
