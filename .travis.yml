@@ -8,7 +8,5 @@ install:
   - docker build -t docker-hexo\hexo:latest .
   - docker run -e HEXO_ORIGIN='$hexo-origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo docker-hexo\hexo
 
-env:
-  -
 script:
   - docker ps | grep -q docker-hexo
