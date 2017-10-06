@@ -1,6 +1,6 @@
 FROM node:6-slim
 
-LABEL Mainteiner="blog@chmielek.com"
+LABEL maintainer="https://github.com/RichardChmielek"
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.10
