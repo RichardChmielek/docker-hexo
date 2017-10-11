@@ -7,9 +7,9 @@ services:
 install:
   - docker build -t docker-hexo\hexo:latest .
   - docker login --username $username --password $password $server
+  - docker tag hexo:latest $server/hexo:latest
+  - docker push $server/hexo:latest
   - docker run -e HEXO_ORIGIN='$origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo docker-hexo\hexo
-  - docker tag docker-hexo\hexo $server\hexo:latest
-  - docker push $server\hexo:latest
 
 script:
   - docker ps | grep -q docker-hexo
