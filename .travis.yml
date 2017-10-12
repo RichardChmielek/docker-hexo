@@ -4,12 +4,16 @@ sudo: required
 services:
   - docker
 
-install:
-  - docker build -t docker-hexo\hexo:latest .
-  - docker login --username $username --password $password $server
-  - docker tag hexo $server/docker-hexo/hexo:latest
-  - docker push $server/docker-hexo/hexo:latest
-  - docker run -e HEXO_ORIGIN='$origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo docker-hexo\hexo
+branches:
+  only:
+    - master
 
 script:
+  - chmod +x build.sh
+  - build.sh
+  - docker run -e HEXO_ORIGIN='$origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo docker-hexo\hexo
   - docker ps | grep -q docker-hexo
+
+after_success:
+  - chmod +x push.sh
+  - push.sh
