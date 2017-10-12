@@ -4,10 +4,6 @@ sudo: required
 services:
   - docker
 
-branches:
-  only:
-    - master
-
 script:
   - chmod +x build.sh
   - build.sh
