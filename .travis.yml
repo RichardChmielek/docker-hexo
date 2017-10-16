@@ -6,7 +6,7 @@ services:
 
 install:
   - chmod +x push.sh
-  - build.sh
+  - sh build.sh
 
 script:
   - docker run -e HEXO_ORIGIN='$origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo docker-hexo\hexo
@@ -14,4 +14,4 @@ script:
 
 after_success:
   - chmod +x push.sh
-  - push.sh
+  - sh push.sh
