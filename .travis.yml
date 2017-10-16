@@ -5,7 +5,8 @@ services:
   - docker
 
 install:
-  - docker build -t docker-hexo\hexo:latest .
+  - chmod +x push.sh
+  - build.sh
 
 script:
   - docker run -e HEXO_ORIGIN='$origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo docker-hexo\hexo
