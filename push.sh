@@ -1,10 +1,15 @@
 #!/bin/bash
-docker login --username $username --password $password $server
+docker login $server --username $username --password $password
 if [ ! -z "$version" ]; then
-    echo "Version is set. tagging and pushing new version"
-    docker tag docker-hexo $server/$username/hexo:$version
-    docker push $server/$username/hexo:$version
+    echo "Version is set to: $version."
+    echo "tagging $version..."
+    docker tag docker-hexo $server/blog/hexo:$version
+    echo "pushing $version..."
+    docker push $server/blog/hexo:$version
+    echo "tagged and pushed $version."
 fi
-
-docker tag docker-hexo $server/$username/hexo:latest
-docker push $server/$username/hexo:latest
+echo "tagging latest..."
+docker tag docker-hexo $server/blog/hexo:latest
+echo "pusing latest..."
+docker push $server/blog/hexo:latest
+echo "tagged and pushed latest."
