@@ -10,6 +10,6 @@ if [ ! -z "$version" ]; then
 fi
 echo "tagging latest..."
 docker tag docker-hexo $server/blog/hexo:latest
-echo "pusing latest..."
+echo "pushing latest..."
 docker push $server/blog/hexo:latest
 echo "tagged and pushed latest."
