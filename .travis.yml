@@ -9,7 +9,7 @@ jobs:
       - docker build -t $tag .
       - docker images
       - docker tag $tag $username/$tag
-      - docker push $username/$tag
+      - docker login $server -u $username -p $password && docker push $username/$tag
     - stage: test
       script: docker run --rm $username/$tag
     - script: docker run --rm $username/$tag
