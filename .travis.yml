@@ -5,11 +5,11 @@ jobs:
   include:
     - stage: build docker image
       script:
-      - docker login $server -u="$username" -p="$password"
+      - docker login $server -u $username  -p $password
       - docker build -t $tag .
       - docker images
       - docker tag $tag $username/$tag
-      - docker login $server -u $username -p $password && docker push $username/$tag
+      - docker push $server/$username/$tag
     - stage: test
       script: docker run --rm $username/$tag
     - script: docker run --rm $username/$tag
