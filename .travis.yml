@@ -1,17 +1,15 @@
-language: bash
-sudo: required
+sudo: true
+dist: trusty
 
-services:
-  - docker
-
-install:
-  - chmod +x build.sh
-  - chmod +x push.sh
-  - sh build.sh
-
-script:
-  - docker run -e HEXO_ORIGIN='$origin' -d -p 127.0.0.1:4000:4000 --name docker-hexo blog/hexo
-  - docker ps | grep -q docker-hexo
-
-after_success:
-  - sh push.sh
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker login $server -u="$username" -p="$password"
+      - docker build -t $tag .
+      - docker images
+      - docker tag $tag $username/$tag
+      - docker push $username/$tag
+    - stage: test
+      script: docker run --rm $username/$tag
+    - script: docker run --rm $username/$tag
