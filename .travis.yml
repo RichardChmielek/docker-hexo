@@ -3,13 +3,15 @@ dist: trusty
 
 jobs:
   include:
-    - stage: build docker image
+    - stage: build, tag and push docker image
       script:
       - docker login $server -u $username  -p $password
       - docker build -t $tag .
       - docker images
       - docker tag $tag $server/$username/$tag
       - docker push $server/$username/$tag
-    - stage: test
-      script: docker run --rm $server/$username/$tag
-    - script: docker run --rm $server/$username/$tag
+    - stage: pull, run and test
+      script:
+      - docker login $server -u $username  -p $password
+      - docker pull $server/$username/$tag
+      - docker run --rm $server/$username/$tag
