@@ -9,7 +9,8 @@ jobs:
       - docker build -t $tag .
       - docker images
       - docker tag $tag $server/$username/$tag
-      - docker push $server/$username/$tag
+      - docker push $server/$username/$tag:$version
+      - docker push $server/$username/$tag:latest
     - stage: pull, run and test
       script:
       - docker login $server -u $username  -p $password
