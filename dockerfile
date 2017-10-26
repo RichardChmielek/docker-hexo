@@ -37,4 +37,4 @@ RUN ls -l start.sh
 # Expose port 4000 (default hexo)
 EXPOSE 4000
 # Run hexo server
-CMD ["/blog/start.sh"]
+ENTRYPOINT [ "sh", "/blog/start.sh" ]
