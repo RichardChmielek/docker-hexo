@@ -17,3 +17,5 @@ jobs:
       - docker login $server -u $username  -p $password
       - docker pull $server/$username/$tag
       - docker run --rm -d $server/$username/$tag
+      - docker images
+      - docker rm -f $server/$username/$tag
